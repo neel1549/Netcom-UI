@@ -1,14 +1,19 @@
+// React Imports
 import React, { useState } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
-import styled from "styled-components";
-import nasa from "../assets/nasa-Q1p7bh3SHj8-unsplash.jpg";
-import netcom from "../assets/netcom-logo.png";
-import cmu from "../assets/1200px-Carnegie_Mellon_University_seal.svg.png";
-import Card from "react-bootstrap/Card";
 
-const ScreenWrapper = styled.div``;
-const JumboWrapper = styled.div`
+// Component Imports
+import Button from "react-bootstrap/Button";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Styled from "styled-components";
+
+// Local File Imports
+import cmu from "../assets/1200px-Carnegie_Mellon_University_seal.svg.png";
+import cyberworld from "../assets/CyberWorld.mp4";
+import netcom from "../assets/netcom-logo.png";
+import netcomcmu from "../assets/NetcomCMU.png"
+
+const ScreenWrapper = Styled.div``;
+const JumboWrapper = Styled.div`
   top: 20%;
   /* z-index: 10; */
   background: lightgrey;
@@ -23,29 +28,36 @@ const JumboWrapper = styled.div`
 const LandingScreen = (props) => {
   return (
     <div
-      className="App"
-      style={{
-        backgroundImage: `url(${nasa})`,
-        backgroundSize: "cover",
-        height: "100vh",
-      }}
+      // className="App"
+      // style={{
+      //   backgroundImage: `url(${nasa})`,
+      //   backgroundSize: "cover",
+      //   height: "100vh",
+      // }}
     >
+      <video className='videoTag' autoPlay loop muted>
+        <source src={cyberworld} type='video/mp4' />
+      </video>
+
       <JumboWrapper>
         <Jumbotron>
-          <h1>ASN Malicious Activity Tracker</h1>
-          <h3>
-            Product of sponsorship with Carnegie Mellon University Capstone
-            Program
-          </h3>
-
+          <div style={{
+            textAlign: "center"
+          }}>
+            <h1>ASN Malicious Activity Tracker</h1>
+            <h3>
+              Product from sponsorship with <br></br>Carnegie Mellon University Capstone Program
+            </h3>
+          </div>
+          <br></br>
           <div
             style={{
               flexDirection: "column",
-              left: "20%",
-              position: "relative",
+              left: "15%",
+              position: "relative"
             }}
           >
-            <img
+            {/* <img
               style={{ opacity: 1, left: "25%", paddingRight: 10 }}
               src={netcom}
             />
@@ -54,15 +66,21 @@ const LandingScreen = (props) => {
               width="180"
               height="200"
               src={cmu}
-            />
-          </div>
-
+            /> */}
+            <img
+              style={{ opacity: 1, paddingRight: 10 }}
+              width="400"
+              height="200"
+              src={netcomcmu}/>
+          </div> 
+          <br></br>
           <Button
             style={{ position: "relative", paddingTop: 10, left: "40%" }}
             variant="primary"
             href="/home"
+            size="lg"
           >
-            Learn more
+            Learn More
           </Button>
         </Jumbotron>
       </JumboWrapper>

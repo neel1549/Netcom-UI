@@ -6,5 +6,5 @@ FLASK_BACKEND="../flask-backend"
 npm run build
 cd $FLASK_BACKEND
 echo "Building Flask Back-end"
-python main.py
+python3 main.py
 echo "Finished executing python"
