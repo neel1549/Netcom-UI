@@ -5,12 +5,14 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Styled from "styled-components";
+import Modal from "react-bootstrap/Modal"
+import Form from "react-bootstrap/Form"
 
 // Local File Imports
 import cmu from "../assets/1200px-Carnegie_Mellon_University_seal.svg.png";
 import cyberworld from "../assets/CyberWorld.mp4";
 import netcom from "../assets/netcom-logo.png";
-import netcomcmu from "../assets/NetcomCMU.png"
+
 
 const ScreenWrapper = Styled.div``;
 const JumboWrapper = Styled.div`
@@ -26,21 +28,50 @@ const JumboWrapper = Styled.div`
   width: 90vh;
 `;
 const LandingScreen = (props) => {
+  const [password,setPassword]=useState(false);
+  const [authenticated,setAuthenticated]=useState(false);
+  const[show,setShow]=useState(true)
+  const handleSubmit =() => {
+    if (password==="cmuissupercool"){
+      setShow(false);
+      setAuthenticated(true);
+
+    }
+
+  }
   return (
+    <>
+    <Modal
+        show={show}
+        centered
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>Netcom CMU Password Protection</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+          <Form.Control type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}   
+                     />
+                     <Button  size="sm" style={{marginTop:10,position:'relative',left:360}} variant="primary"  onClick={handleSubmit}>
+                    Authenticate
+                </Button>
+          </Form>
+        </Modal.Body>
+   
+
+      </Modal>
+    {authenticated &&(
     <div
-      // className="App"
-      // style={{
-      //   backgroundImage: `url(${nasa})`,
-      //   backgroundSize: "cover",
-      //   height: "100vh",
-      // }}
+      
     >
       <video className='videoTag' autoPlay loop muted>
         <source src={cyberworld} type='video/mp4' />
       </video>
 
       <JumboWrapper>
-        <Jumbotron>
+        <Jumbotron style={{boxShadow:"10px 10px 10px",borderRadius:20}}>
           <div style={{
             textAlign: "center"
           }}>
@@ -68,10 +99,10 @@ const LandingScreen = (props) => {
               src={cmu}
             /> */}
             <img
-              style={{ opacity: 1, paddingRight: 10 }}
-              width="400"
+              style={{ opacity: 1, paddingRight: 5,marginLeft:105}}
+              width="200"
               height="200"
-              src={netcomcmu}/>
+              src={netcom}/>
           </div> 
           <br></br>
           <Button
@@ -84,7 +115,8 @@ const LandingScreen = (props) => {
           </Button>
         </Jumbotron>
       </JumboWrapper>
-    </div>
+    </div> )}
+    </>
   );
 };
 export default LandingScreen;
