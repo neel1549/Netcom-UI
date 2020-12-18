@@ -6,5 +6,5 @@ To run:
 ```
 cd frontend-react
 npm install
-"./run.sh"
+./run.sh
 ```
